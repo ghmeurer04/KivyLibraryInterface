@@ -46,3 +46,9 @@ h1 {
     background-color: #f9f9f9;
   }
 }
+
+video {
+  width: 320px;
+  height: 240px;
+  background: black;
+}

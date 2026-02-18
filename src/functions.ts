@@ -1,7 +1,8 @@
-export async function accessCamera(): Promise<boolean> {
+import Quagga from "quagga";
+
+export async function accessCamera(): Promise<string | null> {
     const video : HTMLVideoElement = document.getElementById("camera") as HTMLVideoElement;
-    console.log("Accessing camera...");
-    console.log(video);
+
     try {
         const stream = await navigator.mediaDevices.getUserMedia({
         video: true,
@@ -9,10 +10,36 @@ export async function accessCamera(): Promise<boolean> {
         });
         video.srcObject = stream;
 
-        return true
+        Quagga.init({
+        inputStream: {
+            type: "LiveStream",
+            target: document.getElementById("camera") as HTMLVideoElement
+        },
+        decoder: {
+            readers: ["ean_reader", "code_128_reader"]
+        }
+        },
+        err => {
+            if (err) {
+            console.error(err);
+            return;
+            }
+            Quagga.start();
+        }
+        );
+
+        Quagga.onDetected(data => {
+            console.log(data.codeResult.code);
+            Quagga.stop();
+            return data.codeResult.code
+        });
+    
+        return null; // Placeholder return value, as the actual code is returned in the onDetected callback
+
     } catch (err) {
+        console.log(err)
         console.error("Camera access denied:", err);
-        return false
+        return null;
     }
 }
 
@@ -23,3 +50,10 @@ export function stopCamera() {
     video.srcObject = null;
 }
 
+export function saveStudent() {
+    console.log("Saving student...");
+}
+
+export function saveBook() {
+    console.log("Saving book...");
+}
