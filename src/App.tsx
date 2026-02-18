@@ -1,6 +1,6 @@
-import Homepage from './pages/Homepage'
-import StudentAccess from './pages/StudentAccess'
-import EmployeeAccess from './pages/EmployeeAccess'
+import Homepage from './Homepage'
+import StudentAccess from './StudentAccess'
+import EmployeeAccess from './EmployeeAccess'
 import './App.css'
 import {Routes, Route} from 'react-router-dom'
 

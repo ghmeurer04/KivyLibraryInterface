@@ -1,5 +1,5 @@
-import ImageCard from '../components/ImageCard';
-import ButtonLink from '../components/ButtonLink';
+import ImageCard from './components/ImageCard';
+import ButtonLink from './components/ButtonLink';
 
 function Homepage() {
     return (<>

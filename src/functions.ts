@@ -34,7 +34,7 @@ export async function accessCamera(): Promise<string | null> {
             return data.codeResult.code
         });
     
-        return null; // Placeholder return value, as the actual code is returned in the onDetected callback
+        return ""; // Placeholder return value, as the actual code is returned in the onDetected callback
 
     } catch (err) {
         console.log(err)
